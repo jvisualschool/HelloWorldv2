@@ -3,919 +3,285 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HELLO WORLD — VIBE CODING</title>
+  <title>Hello World — Vibe Coding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,500;0,700;1,400&family=Outfit:wght@300;400;600;800;900&family=Pretendard:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-dark: #070913;
-      --card-bg: rgba(18, 22, 43, 0.65);
-      --card-border: rgba(255, 255, 255, 0.1);
-      --card-hover-border: rgba(168, 85, 247, 0.4);
-      --accent-purple: #a855f7;
-      --accent-cyan: #06b6d4;
-      --accent-pink: #ec4899;
-      --accent-amber: #f59e0b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --glow-gradient: linear-gradient(135deg, #a855f7 0%, #06b6d4 50%, #ec4899 100%);
+      --bg: #090a0f;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.2);
+      --text: #ededed;
+      --text-muted: #888891;
+      --accent: #3b82f6;
+      --glow: rgba(59, 130, 246, 0.15);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      user-select: none;
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Outfit', 'Pretendard', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding: 2rem 1.5rem 4rem;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Interactive Background Canvas */
-    #bg-canvas {
+    /* Subtle Center Ambient Glow */
+    .ambient-glow {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* Ambient Glow Blobs */
-    .glow-blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.45;
-      z-index: 0;
-      pointer-events: none;
-      animation: floatSlow 18s ease-in-out infinite alternate;
-    }
-
-    .blob-1 {
-      top: 10%;
-      left: 15%;
-      width: 400px;
-      height: 400px;
-      background: #7928ca;
-    }
-
-    .blob-2 {
-      bottom: 15%;
-      right: 15%;
-      width: 450px;
-      height: 450px;
-      background: #0070f3;
-      animation-delay: -7s;
-    }
-
-    .blob-3 {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 350px;
-      height: 350px;
-      background: #ff0080;
-      opacity: 0.25;
-      animation-delay: -12s;
-    }
-
-    @keyframes floatSlow {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, -60px) scale(1.15); }
-      100% { transform: translate(-50px, 40px) scale(0.9); }
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(59, 130, 246, 0.05) 45%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* Main Container */
-    .container {
+    .wrapper {
       position: relative;
-      z-index: 10;
+      z-index: 1;
+      max-width: 680px;
       width: 100%;
-      max-width: 1080px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2.5rem;
+      text-align: center;
+      gap: 2.2rem;
     }
 
-    /* Header & Navigation Tag */
-    .top-badge {
+    /* Status Badge */
+    .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.45rem 1.1rem;
+      gap: 8px;
+      padding: 6px 14px;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(16px);
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #e2e8f0;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      animation: pulseBadge 3s infinite;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
     }
 
-    .badge-dot {
-      width: 8px;
-      height: 8px;
+    .dot {
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 10px #22c55e;
-      animation: blink 1.5s infinite;
+      background: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
     }
 
-    @keyframes blink {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    @keyframes pulseBadge {
-      0%, 100% { border-color: rgba(255, 255, 255, 0.15); }
-      50% { border-color: rgba(168, 85, 247, 0.6); }
-    }
-
-    /* Hero Title Section */
-    .hero-section {
-      text-align: center;
+    /* Main Hero */
+    .hero {
       display: flex;
       flex-direction: column;
+      gap: 1rem;
       align-items: center;
-      gap: 1.2rem;
     }
 
-    .title-sub {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 1.05rem;
-      color: var(--accent-cyan);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      font-weight: 500;
-      opacity: 0.95;
+    .hero h1 {
+      font-size: clamp(2.8rem, 6.5vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: #ffffff;
     }
 
-    .hero-title {
-      font-size: clamp(3.5rem, 9vw, 6.8rem);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 40%, #a855f7 75%, #38bdf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 15px 35px rgba(168, 85, 247, 0.3));
-      margin-bottom: 0.2rem;
-      transition: transform 0.3s ease;
-    }
-
-    .hero-title:hover {
-      transform: scale(1.02);
-    }
-
-    .hero-desc {
-      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    .hero p {
+      font-size: 1.12rem;
       color: var(--text-muted);
-      max-width: 640px;
+      max-width: 520px;
       line-height: 1.6;
       font-weight: 400;
     }
 
-    .highlight {
-      color: #f8fafc;
-      font-weight: 700;
-      background: linear-gradient(120deg, #ec4899, #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Action Buttons Row */
-    .cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 0.5rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1.8rem;
-      border-radius: 14px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      text-decoration: none;
-      outline: none;
-    }
-
-    .btn-primary {
-      background: var(--glow-gradient);
-      color: #ffffff;
-      border: none;
-      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 16px 40px rgba(236, 72, 153, 0.5);
-    }
-
-    .btn-primary:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    .btn-glass {
-      background: rgba(255, 255, 255, 0.05);
-      color: #e2e8f0;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-    }
-
-    .btn-glass:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-3px);
-    }
-
-    /* Dashboard Grid */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      width: 100%;
-      margin-top: 1rem;
-    }
-
+    /* Minimal Card */
     .card {
+      width: 100%;
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 1.8rem;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+      backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--glow-gradient);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      gap: 1.2rem;
+      transition: border-color 0.2s ease;
+      text-align: left;
     }
 
     .card:hover {
-      border-color: var(--card-hover-border);
-      transform: translateY(-5px);
-      box-shadow: 0 25px 50px rgba(168, 85, 247, 0.2);
+      border-color: var(--border-hover);
     }
 
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-header {
+    .card-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.2rem;
-    }
-
-    .card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .card-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--accent-cyan);
-      background: rgba(6, 182, 212, 0.12);
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      font-weight: 600;
     }
 
     .card-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #fff;
-    }
-
-    .card-desc {
-      font-size: 0.92rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 1.2rem;
     }
 
-    /* Feature 1: Vibe Meter */
-    .vibe-meter-box {
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 16px;
-      padding: 1.2rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+    .quote-box {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: #f1f5f9;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 400;
+      min-height: 52px;
       display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
+      align-items: center;
     }
 
-    .vibe-val-row {
+    .card-footer {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: baseline;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 0.2rem;
     }
 
-    .vibe-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent-pink);
-      text-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
-    }
-
-    .vibe-status {
-      font-size: 0.85rem;
-      color: #4ade80;
-      font-weight: 600;
-    }
-
-    .progress-bar-bg {
-      width: 100%;
-      height: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 999px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .progress-bar-fill {
-      width: 95%;
-      height: 100%;
-      background: var(--glow-gradient);
-      border-radius: 999px;
-      transition: width 0.4s ease;
-      box-shadow: 0 0 12px var(--accent-purple);
-    }
-
-    /* Feature 2: Terminal / Code stream */
-    .code-terminal {
-      background: rgba(0, 0, 0, 0.55);
-      border-radius: 14px;
-      padding: 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      color: #38bdf8;
-      line-height: 1.7;
-      min-height: 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .prompt-text {
-      color: #e2e8f0;
-    }
-    .prompt-accent {
-      color: #a855f7;
-    }
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 15px;
-      background: #38bdf8;
-      vertical-align: middle;
-      animation: blink 0.9s infinite;
-      margin-left: 4px;
-    }
-
-    /* Feature 3: Lo-fi Audio Visualizer */
-    .audio-visualizer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      height: 48px;
-      margin: 0.8rem 0;
-    }
-
-    .wave-bar {
-      width: 6px;
-      height: 12px;
-      background: var(--accent-purple);
-      border-radius: 4px;
-      transition: height 0.1s ease;
-    }
-
-    .wave-bar:nth-child(even) {
-      background: var(--accent-cyan);
-    }
-
-    .wave-bar.active {
-      animation: wave 0.8s ease-in-out infinite alternate;
-    }
-
-    @keyframes wave {
-      0% { height: 8px; }
-      100% { height: 42px; }
-    }
-
-    /* Quick Tips / Manifesto Banner */
-    .manifesto-banner {
-      width: 100%;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.15));
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 24px;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    }
-
-    .manifesto-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .manifesto-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-
-    .manifesto-item {
-      background: rgba(0, 0, 0, 0.25);
-      padding: 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-
-    .manifesto-item strong {
-      color: #38bdf8;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(168, 85, 247, 0.6);
-      backdrop-filter: blur(16px);
-      color: #fff;
-      padding: 0.8rem 1.6rem;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 100;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 0.85rem;
+    .vibe-count {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
     }
 
-    @media (max-width: 640px) {
-      body { padding: 1.5rem 1rem; }
-      .hero-title { font-size: 3rem; }
-      .cta-group { flex-direction: column; width: 100%; }
-      .btn { width: 100%; justify-content: center; }
+    .vibe-count strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Clean Buttons */
+    .btn-action {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-action:active {
+      transform: scale(0.97);
+    }
+
+    /* Minimal Footer */
+    footer {
+      font-size: 0.8rem;
+      color: #55555c;
+      letter-spacing: 0.02em;
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Canvas for Particles & Aura -->
-  <canvas id="bg-canvas"></canvas>
-  <div class="glow-blob blob-1"></div>
-  <div class="glow-blob blob-2"></div>
-  <div class="glow-blob blob-3"></div>
+  <div class="ambient-glow"></div>
 
-  <main class="container">
-    <!-- Top Status Badge -->
-    <div class="top-badge">
-      <span class="badge-dot"></span>
-      <span>Vibe Coding Engine: Active</span>
+  <main class="wrapper">
+    <div class="badge">
+      <span class="dot"></span>
+      <span>Vibe Coding Active</span>
     </div>
 
-    <!-- Hero Header -->
-    <section class="hero-section">
-      <div class="title-sub">// SYSTEM.INIT("HUMAN_AI_SYNAPSE")</div>
-      <h1 class="hero-title" id="mainTitle">HELLO WORLD</h1>
-      <p class="hero-desc">
-        환영합니다! 생각의 속도로 아이디어를 실체화하는 <br>
-        <span class="highlight">바이브 코딩(Vibe Coding)의 시대</span>가 열렸습니다. 🚀
-      </p>
-
-      <div class="cta-group">
-        <button class="btn btn-primary" id="boostVibeBtn">
-          <span>⚡ 바이브 부스트 (Vibe++)</span>
-        </button>
-        <button class="btn btn-glass" id="playAudioBtn">
-          <span id="audioIcon">🎧</span> <span id="audioText">Lofi 바이브 켜기</span>
-        </button>
-      </div>
+    <section class="hero">
+      <h1>Hello, World.</h1>
+      <p>상상을 코드로 바로 옮기는 바이브 코딩이 시작되었습니다.<br>직관을 믿고 자유롭게 만들어보세요.</p>
     </section>
 
-    <!-- Interactive Dashboards -->
-    <div class="dashboard-grid">
-      <!-- Card 1: Vibe Status -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="card-icon">🧠</div>
-            <div class="card-tag">FLOW STATE</div>
-          </div>
-          <h2 class="card-title">실시간 바이브 지수</h2>
-          <p class="card-desc">AI와의 완벽한 핑퐁 싱크로율 및 코딩 몰입도</p>
-        </div>
-
-        <div class="vibe-meter-box">
-          <div class="vibe-val-row">
-            <span class="vibe-val" id="vibeNumber">100%</span>
-            <span class="vibe-status" id="vibeStatus">최상급 초몰입 (OVERCLOCK)</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="vibeProgress" style="width: 100%;"></div>
-          </div>
-        </div>
+    <div class="card">
+      <div class="card-top">
+        <span class="card-title">Today's Vibe</span>
+        <button class="btn-action" id="nextQuoteBtn">다음 문구 ↻</button>
       </div>
 
-      <!-- Card 2: Interactive Vibe Terminal -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="card-icon">✨</div>
-            <div class="card-tag">PROMPT RUNTIME</div>
-          </div>
-          <h2 class="card-title">오늘의 바이브 프롬프트</h2>
-          <p class="card-desc">클릭하여 영감을 얻고 복사하세요</p>
-        </div>
-
-        <div class="code-terminal" id="terminalBox" style="cursor: pointer;" title="클릭해서 다른 프롬프트 보기">
-          <div><span class="prompt-accent">&gt;</span> <span class="prompt-text" id="terminalText">"완벽한 아키텍처를 상상하고, AI와 함께 바로 구현해줘."</span><span class="cursor"></span></div>
-        </div>
+      <div class="quote-box" id="quoteText">
+        "구현 디테일은 AI에게 맡기고, 당신은 비전과 설계에 집중하세요."
       </div>
 
-      <!-- Card 3: Ambient Wave Visualizer -->
-      <div class="card">
-        <div>
-          <div class="card-header">
-            <div class="card-icon">🎵</div>
-            <div class="card-tag">SYNTH AMBIENT</div>
-          </div>
-          <h2 class="card-title">집중을 돕는 주파수</h2>
-          <p class="card-desc">웹 오디오 신디사이저로 생성되는 실시간 칠 앰비언트</p>
-        </div>
-
-        <div class="audio-visualizer" id="visualizer">
-          <div class="wave-bar" style="animation-delay: 0.1s"></div>
-          <div class="wave-bar" style="animation-delay: 0.3s"></div>
-          <div class="wave-bar" style="animation-delay: 0.2s"></div>
-          <div class="wave-bar" style="animation-delay: 0.5s"></div>
-          <div class="wave-bar" style="animation-delay: 0.4s"></div>
-          <div class="wave-bar" style="animation-delay: 0.6s"></div>
-          <div class="wave-bar" style="animation-delay: 0.2s"></div>
-          <div class="wave-bar" style="animation-delay: 0.4s"></div>
-        </div>
+      <div class="card-footer">
+        <span class="vibe-count">바이브 카운트: <strong id="clickCount">1</strong></span>
+        <button class="btn-action" id="boostBtn">⚡ 바이브 +1</button>
       </div>
     </div>
 
-    <!-- Manifesto Banner -->
-    <section class="manifesto-banner">
-      <div class="manifesto-title">
-        <span>⚡</span> 바이브 코더의 3대 원칙 (Vibe Coding Manifesto)
-      </div>
-      <div class="manifesto-grid">
-        <div class="manifesto-item">
-          <strong>1. Feel the Flow</strong>
-          사소한 문법에 얽매이지 않고 비전과 직관, 그리고 구조적 설계에 집중합니다.
-        </div>
-        <div class="manifesto-item">
-          <strong>2. Prompt like Magic</strong>
-          원하는 목적을 명확히 전달하고, AI와 쾌속 핑퐁을 즐기며 빌드합니다.
-        </div>
-        <div class="manifesto-item">
-          <strong>3. Ship with Joy</strong>
-          생각난 아이디어는 오늘 바로 완성하여 세상과 만납니다.
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-      <p>CREATED WITH VIBE • READY TO BUILD ANYTHING</p>
+      Minimal & Clean • Ready to Build
     </footer>
   </main>
 
-  <!-- Floating Toast -->
-  <div class="toast" id="toast">✨ 바이브 지수가 상승했습니다!</div>
-
   <script>
-    // --- 1. Background Interactive Starfield / Particle Canvas ---
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
-
-    const particles = [];
-    const numParticles = Math.min(width > 768 ? 90 : 45, 100);
-
-    let mouse = { x: width / 2, y: height / 2, radius: 150 };
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    });
-
-    class Particle {
-      constructor() {
-        this.reset();
-      }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() * 2 + 0.8;
-        this.baseSize = this.size;
-        this.speedX = (Math.random() - 0.5) * 0.6;
-        this.speedY = (Math.random() - 0.5) * 0.6;
-        this.color = ['#a855f7', '#06b6d4', '#ec4899', '#ffffff'][Math.floor(Math.random() * 4)];
-        this.opacity = Math.random() * 0.6 + 0.2;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x < 0 || this.x > width) this.speedX *= -1;
-        if (this.y < 0 || this.y > height) this.speedY *= -1;
-
-        // Mouse interaction
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < mouse.radius) {
-          const angle = Math.atan2(dy, dx);
-          const force = (mouse.radius - dist) / mouse.radius;
-          this.x -= Math.cos(angle) * force * 3;
-          this.y -= Math.sin(angle) * force * 3;
-          this.size = this.baseSize * 1.8;
-        } else {
-          this.size = this.baseSize;
-        }
-      }
-      draw() {
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = this.color;
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    for (let i = 0; i < numParticles; i++) {
-      particles.push(new Particle());
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, width, height);
-
-      // Connect near particles
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(168, 85, 247, ${0.15 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-      }
-
-      particles.forEach((p) => {
-        p.update();
-        p.draw();
-      });
-
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
-    // --- 2. Interactive Vibe Booster ---
-    let vibe = 100;
-    const boostBtn = document.getElementById('boostVibeBtn');
-    const vibeNumber = document.getElementById('vibeNumber');
-    const vibeStatus = document.getElementById('vibeStatus');
-    const vibeProgress = document.getElementById('vibeProgress');
-    const toast = document.getElementById('toast');
-
-    const vibeQuotes = [
-      "초몰입 바이브 모드 가동! 🚀",
-      "AI 뉴럴 링크 최대 주파수 도달! 🔥",
-      "아이디어가 코드로 직결되는 중! ⚡",
-      "속도와 미학의 완벽한 밸런스 달성! ✨",
-      "바이브 지수 한계 돌파! (GOD MODE) 🌌"
+    const quotes = [
+      "\"구현 디테일은 AI에게 맡기고, 당신은 비전과 설계에 집중하세요.\"",
+      "\"생각의 속도로 아이디어를 실체화하는 경험을 즐겨보세요.\"",
+      "\"에러를 두려워하지 말고, AI와 대화하듯 편하게 풀어가세요.\"",
+      "\"완벽함보다 빠른 실행과 피드백이 더 중요합니다.\"",
+      "\"당신의 상상력이 곧 소프트웨어의 한계입니다.\""
     ];
 
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2200);
-    }
+    let currentIdx = 0;
+    let count = 1;
 
-    boostBtn.addEventListener('click', (e) => {
-      vibe += Math.floor(Math.random() * 150) + 100;
-      vibeNumber.textContent = vibe + '%';
-      
-      const randomQuote = vibeQuotes[Math.floor(Math.random() * vibeQuotes.length)];
-      vibeStatus.textContent = randomQuote;
-      
-      showToast(`⚡ 바이브 지수 상승! (${vibe}%)`);
-      createBurst(e.clientX, e.clientY);
-    });
+    const quoteText = document.getElementById('quoteText');
+    const nextBtn = document.getElementById('nextQuoteBtn');
+    const boostBtn = document.getElementById('boostBtn');
+    const clickCount = document.getElementById('clickCount');
 
-    // Particle burst on click
-    function createBurst(x, y) {
-      for (let i = 0; i < 20; i++) {
-        const p = new Particle();
-        p.x = x;
-        p.y = y;
-        p.speedX = (Math.random() - 0.5) * 8;
-        p.speedY = (Math.random() - 0.5) * 8;
-        p.size = Math.random() * 4 + 2;
-        particles.push(p);
-      }
-    }
-
-    // --- 3. Prompt Cycler ---
-    const samplePrompts = [
-      "\"완벽한 아키텍처를 상상하고, AI와 함께 바로 구현해줘.\"",
-      "\"오늘 만들려는 앱의 핵심 뷰와 감각적인 애니메이션을 추가해줘.\"",
-      "\"스타일은 세련된 다크모드 글래스모피즘으로 완성해줘.\"",
-      "\"코드 한 줄보다 멋진 바이브와 직관으로 프로덕트를 완성하자.\"",
-      "\"상상한 것을 주저없이 프롬프트로 쏘아올려봐!\""
-    ];
-    let promptIndex = 0;
-    const terminalBox = document.getElementById('terminalBox');
-    const terminalText = document.getElementById('terminalText');
-
-    terminalBox.addEventListener('click', () => {
-      promptIndex = (promptIndex + 1) % samplePrompts.length;
-      terminalText.style.opacity = 0;
+    nextBtn.addEventListener('click', () => {
+      currentIdx = (currentIdx + 1) % quotes.length;
+      quoteText.style.opacity = 0;
       setTimeout(() => {
-        terminalText.textContent = samplePrompts[promptIndex];
-        terminalText.style.opacity = 1;
-        showToast("📋 새로운 바이브 프롬프트 준비 완료!");
+        quoteText.textContent = quotes[currentIdx];
+        quoteText.style.opacity = 1;
       }, 150);
     });
 
-    // --- 4. Web Audio API Ambient Synth Generator ---
-    let audioCtx = null;
-    let isPlaying = false;
-    let synthNodes = [];
-    const playAudioBtn = document.getElementById('playAudioBtn');
-    const audioIcon = document.getElementById('audioIcon');
-    const audioText = document.getElementById('audioText');
-    const waveBars = document.querySelectorAll('.wave-bar');
-
-    function toggleAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
-      if (!isPlaying) {
-        audioCtx.resume();
-        startAmbientSynth();
-        isPlaying = true;
-        audioIcon.textContent = '⏸️';
-        audioText.textContent = 'Lofi 바이브 끄기';
-        waveBars.forEach((bar) => bar.classList.add('active'));
-        showToast("🎵 칠한 바이브 사운드가 켜졌습니다.");
-      } else {
-        stopAmbientSynth();
-        isPlaying = false;
-        audioIcon.textContent = '🎧';
-        audioText.textContent = 'Lofi 바이브 켜기';
-        waveBars.forEach((bar) => bar.classList.remove('active'));
-        showToast("🔇 사운드 일시정지");
-      }
-    }
-
-    function startAmbientSynth() {
-      // Create rich chord drone (Root, 5th, 9th frequencies)
-      const chord = [220, 277.18, 329.63, 440, 554.37]; // A major 9th vibe
-      const masterGain = audioCtx.createGain();
-      masterGain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-      masterGain.connect(audioCtx.destination);
-
-      chord.forEach((freq, idx) => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-        // LFO for breathing effect
-        const lfo = audioCtx.createOscillator();
-        const lfoGain = audioCtx.createGain();
-        lfo.frequency.setValueAtTime(0.2 + idx * 0.05, audioCtx.currentTime);
-        lfoGain.gain.setValueAtTime(0.02, audioCtx.currentTime);
-        lfo.connect(gain.gain);
-        lfo.start();
-
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-        osc.connect(gain);
-        gain.connect(masterGain);
-        osc.start();
-
-        synthNodes.push(osc, lfo, gain);
-      });
-      synthNodes.push(masterGain);
-    }
-
-    function stopAmbientSynth() {
-      synthNodes.forEach((node) => {
-        try {
-          if (node.stop) node.stop();
-          if (node.disconnect) node.disconnect();
-        } catch (e) {}
-      });
-      synthNodes = [];
-    }
-
-    playAudioBtn.addEventListener('click', toggleAudio);
+    boostBtn.addEventListener('click', () => {
+      count++;
+      clickCount.textContent = count;
+      
+      // 차분하고 은은한 클릭 피드백
+      boostBtn.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        boostBtn.style.transform = 'scale(1)';
+      }, 100);
+    });
   </script>
 </body>
 </html>
