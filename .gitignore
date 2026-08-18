@@ -5,3 +5,5 @@ Thumbs.db
 *.key
 AWS.txt
 *.env
+WORK_REPORT.md
+WORK_*.md
