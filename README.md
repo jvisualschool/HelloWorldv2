@@ -35,8 +35,8 @@
 
 ```bash
 # 1. 저장소 클론
-git clone https://github.com/jvisualschool/HELLO.git
-cd HELLO
+git clone https://github.com/jvisualschool/HelloWorldv2.git
+cd HelloWorldv2
 
 # 2. 브라우저에서 바로 열기 (macOS 기준)
 open hello.html
